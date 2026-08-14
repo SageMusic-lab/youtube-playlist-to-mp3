@@ -1,13 +1,23 @@
 # YouTube Playlist → MP3
 
-A beginner-friendly command-line setup for downloading audio from YouTube playlists and converting it to MP3 using **yt-dlp** and **FFmpeg**.
+A simple beginner-friendly tool for downloading audio from YouTube playlists and converting it to MP3 using **yt-dlp** and **FFmpeg**.
 
 Works on:
 
 - 🍎 macOS
 - 🪟 Windows
 
-The project is designed to take you from a fresh computer to downloading a complete playlist with as little manual setup as possible.
+The project is designed around a simple workflow:
+
+```text
+Clone the project
+      ↓
+Run the installer
+      ↓
+Paste your YouTube playlist URL
+      ↓
+Download MP3 files
+```
 
 ---
 
@@ -17,31 +27,35 @@ Only download content that you have permission to download or that is otherwise 
 
 This project does not bypass DRM, private content, or access controls.
 
-YouTube availability, restrictions, and technical requirements can change over time.
+YouTube availability and technical requirements can change over time.
 
 ---
 
 # 🚀 Quick Start
 
-The easiest way to use this project is to **clone the repository**.
+You don't need to manually install every component.
 
-## 1. Clone the repository
+The repository includes installers for both macOS and Windows.
 
-Open Terminal on macOS or PowerShell on Windows and run:
+---
+
+## 🍎 macOS
+
+### 1. Clone the repository
+
+Open Terminal and run:
 
 ```bash
 git clone https://github.com/SageMusic-lab/youtube-playlist-to-mp3.git
 ```
 
-Then enter the project folder:
+Then enter the project:
 
 ```bash
 cd youtube-playlist-to-mp3
 ```
 
----
-
-# 🍎 macOS
+### 2. Start the installer
 
 Run:
 
@@ -52,35 +66,27 @@ chmod +x scripts/mac-install.sh
 
 The installer will:
 
-1. Check that Homebrew is installed
+1. Check for Homebrew
 2. Install yt-dlp
 3. Install FFmpeg
 4. Install Deno
-5. Ask you for your YouTube playlist URL
-6. Download the playlist as MP3 files
+5. Check the required tools
+6. Ask for your YouTube playlist URL
+7. Download the playlist as MP3 files
 
-Your downloaded files will be placed inside:
-
-```text
-~/Downloads/
-```
-
-Example:
+When you see:
 
 ```text
-Downloads/
-└── My Playlist/
-    ├── 001 - Track One.mp3
-    ├── 002 - Track Two.mp3
-    ├── 003 - Track Three.mp3
-    └── ...
+Paste your YouTube playlist URL:
 ```
 
-### macOS requirements
+paste your playlist URL and press Enter.
 
-The installer requires **Homebrew**.
+### macOS requirement
 
-If Homebrew is not installed, install it from:
+Homebrew must be installed.
+
+If you don't have Homebrew, install it from:
 
 https://brew.sh/
 
@@ -90,7 +96,21 @@ Then run the installer again.
 
 # 🪟 Windows
 
-Open PowerShell inside the cloned project folder.
+### 1. Clone the repository
+
+Open PowerShell and run:
+
+```powershell
+git clone https://github.com/SageMusic-lab/youtube-playlist-to-mp3.git
+```
+
+Then enter the project:
+
+```powershell
+cd youtube-playlist-to-mp3
+```
+
+### 2. Run the installer
 
 Run:
 
@@ -106,34 +126,27 @@ Then:
 
 The installer will:
 
-1. Install yt-dlp
-2. Install FFmpeg
-3. Install Deno
-4. Ask you for your YouTube playlist URL
-5. Download the playlist as MP3 files
+1. Check for winget
+2. Install yt-dlp
+3. Install FFmpeg
+4. Install Deno
+5. Check the required tools
+6. Ask for your YouTube playlist URL
+7. Download the playlist as MP3 files
 
-Your downloaded files will be placed inside:
-
-```text
-Downloads\
-```
-
-Example:
+When you see:
 
 ```text
-Downloads\
-└── My Playlist\
-    ├── 001 - Track One.mp3
-    ├── 002 - Track Two.mp3
-    ├── 003 - Track Three.mp3
-    └── ...
+Paste your YouTube playlist URL:
 ```
+
+paste your playlist URL and press Enter.
 
 ---
 
 # 🎵 What the downloader does
 
-The download process uses:
+The downloader uses:
 
 ```text
 YouTube Playlist
@@ -149,16 +162,43 @@ Best available audio
 Downloads / Playlist Name
 ```
 
-The command is configured to:
+It is configured to:
 
 - Download the entire playlist
 - Extract audio
 - Convert audio to MP3
-- Keep the playlist order
+- Keep playlist order
 - Number tracks automatically
 - Create a folder using the playlist name
 - Skip unavailable videos
 - Avoid overwriting existing files
+
+---
+
+# 📁 Where are the files saved?
+
+### macOS
+
+```text
+~/Downloads/
+```
+
+### Windows
+
+```text
+Downloads\
+```
+
+Example:
+
+```text
+Downloads/
+└── My Playlist/
+    ├── 001 - Track One.mp3
+    ├── 002 - Track Two.mp3
+    ├── 003 - Track Three.mp3
+    └── ...
+```
 
 ---
 
@@ -172,13 +212,13 @@ Tracks are automatically numbered:
 003 - Track Name.mp3
 ```
 
-This makes it easier to keep the original playlist order.
+This keeps the original playlist order.
 
 ---
 
 # 🔄 Continuing an interrupted download
 
-If you stop the download with:
+If you stop a download with:
 
 ```text
 Ctrl + C
@@ -188,13 +228,13 @@ your completed files remain on your computer.
 
 Run the installer/download command again.
 
-Existing files are protected by:
+The downloader uses:
 
 ```text
 --no-overwrites
 ```
 
-so files that already exist will not intentionally be overwritten.
+so existing files with matching filenames will not intentionally be overwritten.
 
 ---
 
@@ -208,89 +248,80 @@ The downloader uses:
 
 This tells FFmpeg to use its best MP3 conversion quality.
 
-However, this does **not** mean:
+This does **not** mean:
 
 - Lossless audio
 - Guaranteed 320 kbps
 - Studio-quality audio
 
-YouTube audio is already compressed, and converting it to MP3 introduces another lossy encoding step.
-
-If you want the best available source audio without converting it to MP3, yt-dlp can also download the best available audio stream directly.
+YouTube audio is already compressed, and converting it to MP3 creates another lossy encoding step.
 
 ---
 
 # 🛠️ Troubleshooting
 
-If something doesn't work, check:
+Having problems?
 
-[Open the Troubleshooting Guide](TROUBLESHOOTING.md)
+Open:
 
-Common problems include:
+[Troubleshooting Guide](TROUBLESHOOTING.md)
+
+It covers common problems including:
 
 - `yt-dlp: command not found`
 - `ffmpeg: command not found`
 - `deno: command not found`
-- HTTP `403 Forbidden`
+- HTTP 403 errors
 - Video unavailable
+- Copyright-removed videos
 - Interrupted downloads
-- PATH problems
-- YouTube changing its extraction requirements
+- Wrong download folder
+- Rate limiting
+- PO-token problems
+- MP3 quality questions
 
 ---
 
 # 🔐 PO-token / YouTube changes
 
-YouTube's extraction system can change over time.
+Most users do **not** need to manually configure a PO-token provider.
 
-Some yt-dlp setups may require additional components such as a **PO-token provider** depending on the requests being made.
+The included installers set up the main tools required for normal use:
 
-This repository currently provides the basic installation and download workflow.
+- yt-dlp
+- FFmpeg
+- Deno
 
-If your setup returns repeated `403 Forbidden` errors, see:
+YouTube's systems can change over time.
 
-[The Troubleshooting Guide](TROUBLESHOOTING.md)
+If yt-dlp repeatedly returns HTTP 403 errors, bot checks, or other request-related errors, an advanced PO-token provider may help in some situations.
 
-The current bgutil PO-token provider project can be found here:
+The bgutil PO-token provider is available here:
 
 https://github.com/Brainicism/bgutil-ytdlp-pot-provider
 
-The PO-token server and yt-dlp plugin are separate components and may require additional setup.
+The PO-token server and yt-dlp plugin are separate components.
+
+A PO-token provider does not guarantee that every 403 error or YouTube restriction will be resolved.
+
+For problems, see:
+
+[Troubleshooting Guide](TROUBLESHOOTING.md)
 
 ---
 
-# 📁 Project structure
+# 📂 Project structure
 
 ```text
 youtube-playlist-to-mp3/
 │
 ├── README.md
-├── macOS.md
-├── Windows.md
 ├── TROUBLESHOOTING.md
 │
 └── scripts/
     ├── mac-install.sh
     └── windows-install.ps1
 ```
-
----
-
-# 📖 Detailed guides
-
-If you prefer to manually follow every step instead of using the installers:
-
-### 🍎 macOS
-
-[macOS Setup](macOS.md)
-
-### 🪟 Windows
-
-[Windows Setup](Windows.md)
-
-### 🛠️ Troubleshooting
-
-[Troubleshooting](TROUBLESHOOTING.md)
 
 ---
 
@@ -332,12 +363,12 @@ https://github.com/Brainicism/bgutil-ytdlp-pot-provider
 
 # ⭐ Support the project
 
-If this project helped you, you can:
+If this project helped you:
 
 - ⭐ Star the repository
 - 🐛 Report problems in Issues
 - 💡 Suggest improvements
-- 🔧 Submit improvements through Pull Requests
+- 🔧 Submit Pull Requests
 
 ---
 
@@ -347,7 +378,7 @@ This project is provided for educational and personal use.
 
 The author does not host or distribute downloaded media.
 
-Users are responsible for complying with YouTube's Terms of Service, copyright law, and any other applicable laws or permissions.
+Users are responsible for complying with YouTube's Terms of Service, copyright law, and any other applicable laws and permissions.
 
 ---
 
